@@ -12,13 +12,31 @@ Este deverá ser capaz de responder às seguintes questões:
 
 ## INSTALAÇÃO
 
-Clone o repositório para baixar os arquivos na mesma pasta, suba o arquivo SQL no postgre e execute as funções para obter os resultados.
+#### Banco de dados
+Baixe os dados da tabela
+https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
 
-`$ git clone https://github.com/britothiago/analiselog.git`
+Você precisará descompactar este arquivo após o download. O arquivo dentro é chamado de newsdata.sql. Coloque este arquivo no diretório vagrant que é compartilhado com a máquina virtual.
 
-Para executar as funções, basta retirar as funções dos comentários.
+#### Virtual Box
+VirtualBox é o software que na verdade executa a máquina virtual. Você pode baixá-lo no virtualbox.org. Instale o plataform package para seu sistema operacional. Você não precisa do pacote de extensão ou do SDK. Você não precisa iniciar o VirtualBox após instalá-lo; Vagrant vai fazer isso.
 
-*Recomenda-se a utilização da versão 3.5.2 do Python*
+#### Vagrant
+Vagrant é o software que configura a VM e permite que você compartilhe arquivos entre seu computador host e o sistema de arquivos da VM. Baixe no vagrantup.com. Instale a versão de seu sistema operacional.
+
+Clone o repositório `https://github.com/udacity/fullstack-nanodegree-vm` e obtenha o diretório contendo os arquivos da VM. Mude para este diretório no seu terminal com cd. Dentro, você encontrará outro diretório chamado vagrant. Altere o diretório para o diretório vagrant:
+
+Clone o repositório com os dados da análise para baixar os arquivos na mesma do vagrant. Sugerimos que você crie uma subpasta. 
+`https://github.com/britothiago/analiselog.git`
+
+Dentro desta subpasta, descompacte o arquivo SQL. 
+
+Execute o comando no terminal `vagrant up` para iniciar a maquina virtual e logo após, `vagrant ssh` para conectar.
+
+Navegue até a subpasta e execute `psql -d news -f newsdata.sql`. Isso fará carregar os dados no banco de dados
+
+Para acessar o banco, use o `psql -d news`
+
 
 ## ESTRUTURA
 

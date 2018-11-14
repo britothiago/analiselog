@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import psycopg2
 
 
@@ -17,6 +19,7 @@ def artigos_populares():
               articles ON log.path = '/article/' || articles.slug GROUP BY \
               articles.title ORDER BY total DESC LIMIT 3")
     artigos = c.fetchall()
+    print('Artigos mais populares')
     for art in artigos:
         print("%s - %s views" % (art[0], art[1]))
     pg.close()
@@ -30,6 +33,7 @@ def autores_populares():
                 JOIN log ON log.path = '/article/' || articles.slug\
                 GROUP BY authors.name ORDER BY total DESC")
     autor = c.fetchall()
+    print('Autores mais visualizados')
     for aut in autor:
         print("%s - %s views" % (aut[0], aut[1]))
 
@@ -53,10 +57,11 @@ def porcentagem():
                 WHERE ROUND(100.0 * erro.totalerro / nerro.totalnerro, 2) > 1\
                 ORDER BY ROUND DESC")
     result = c.fetchall()
+    print('Dia com percentual de mais erros de acesso')
     for final in result:
         print(final[0] + ' - ' + str(final[1]) + '% errors')
 
 
-'#artigos_populares()'
-'#autores_populares()'
-'#porcentagem()'
+artigos_populares()
+autores_populares()
+porcentagem()
